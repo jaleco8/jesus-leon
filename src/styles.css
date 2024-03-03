@@ -1,1 +1,158 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Monaspace Argon";
+  src: url("/assets/font/MonaspaceArgonVarVF.ttf");
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+}
+
+body {
+  font-family: "Monaspace Argon";
+  margin: 0;
+  line-height: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+p {
+  display: block;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+[type="button"],
+[type="reset"],
+[type="submit"],
+button {
+  background-color: transparent;
+  background-image: none;
+}
+
+[role="button"],
+button {
+  cursor: pointer;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: #fff;
+  flex-shrink: 0;
+}
+
+.main {
+  background-color: #f3f4f6;
+  padding: 1.5rem;
+  flex-grow: 1;
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-main {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.content-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.logo {
+  height: 4rem;
+  width: auto;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+img,
+svg {
+  display: flex;
+  align-items: center;
+}
+
+.content-list {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1535px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .container {
+    max-width: 640px;
+  }
+}

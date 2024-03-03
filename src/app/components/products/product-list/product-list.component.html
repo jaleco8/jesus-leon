@@ -1,0 +1,106 @@
+<section class="content-list">
+  <div class="nav-search">
+    <input type="search" class="input" placeholder="Search..." />
+    <svg class="svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+      />
+    </svg>
+  </div>
+  <button class="button" (click)="addProduct()">Add</button>
+</section>
+
+<section>
+  <div class="card">
+    <div class="overflow">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Logo</th>
+            <th>Nombre del Producto</th>
+            <th>Descripción</th>
+            <th>Fecha de Liberación</th>
+            <th>Fecha de Restructuracón</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>John Doe</td>
+            <td>24/05/1995</td>
+            <td>Web Developer</td>
+            <td>$120,000</td>
+            <td>$120,000</td>
+          </tr>
+
+          <tr>
+            <td>Jane Doe</td>
+            <td>04/11/1980</td>
+            <td>Web Designer</td>
+            <td>$100,000</td>
+            <td>$120,000</td>
+          </tr>
+
+          <tr>
+            <td>Gary Barlow</td>
+            <td>24/05/1995</td>
+            <td>Singer</td>
+            <td>$20,000</td>
+            <td>$120,000</td>
+          </tr>
+        </tbody>
+      </table>
+      <footer class="footer">
+        <div>
+          <p class="footer-text">
+            Resultados: <span class="footer-count">100</span>
+          </p>
+        </div>
+        <div class="footer-pagination">
+          <label for="rows" class="footer-label">Mostrar:</label>
+          <select id="rows" class="footer-select form-select">
+            <option>5</option>
+            <option>10</option>
+            <option>20</option>
+          </select>
+          <nav class="footer-nav">
+            <ul>
+              <li>
+                <a href="#" class="footer-link-icon">
+                  <svg class="footer-link-icon-svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                      fill-rule="evenodd"
+                      d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="footer-link">1</a>
+              </li>
+              <li class="footer-link-active footer-link">2</li>
+              <li>
+                <a href="#" class="footer-link">3</a>
+              </li>
+              <li>
+                <a href="#" class="footer-link-icon">
+                  <svg class="footer-link-icon-svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                      fill-rule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </footer>
+    </div>
+  </div>
+</section>
