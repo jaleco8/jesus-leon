@@ -27,7 +27,7 @@
           </tr>
         </thead>
 
-        <tbody>
+        <tbody *ngIf="listProducts && listProducts.length > 0; else noProducts">
           <tr>
             <td>John Doe</td>
             <td>24/05/1995</td>
@@ -52,11 +52,21 @@
             <td>$120,000</td>
           </tr>
         </tbody>
+        <ng-template #noProducts>
+          <tbody>
+            <tr>
+              <td colspan="5" class="no-results">No hay productos</td>
+            </tr>
+          </tbody>
+        </ng-template>
       </table>
       <footer class="footer">
         <div>
           <p class="footer-text">
-            Resultados: <span class="footer-count">100</span>
+            Resultados:
+            <span class="footer-count">{{
+              listProducts && listProducts.length
+            }}</span>
           </p>
         </div>
         <div class="footer-pagination">
@@ -70,7 +80,11 @@
             <ul>
               <li>
                 <a href="#" class="footer-link-icon">
-                  <svg class="footer-link-icon-svg" viewBox="0 0 20 20" fill="currentColor">
+                  <svg
+                    class="footer-link-icon-svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
                     <path
                       fill-rule="evenodd"
                       d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
@@ -88,7 +102,11 @@
               </li>
               <li>
                 <a href="#" class="footer-link-icon">
-                  <svg class="footer-link-icon-svg" viewBox="0 0 20 20" fill="currentColor">
+                  <svg
+                    class="footer-link-icon-svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
                     <path
                       fill-rule="evenodd"
                       d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"

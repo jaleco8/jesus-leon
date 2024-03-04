@@ -133,3 +133,62 @@
 .form-button-amber:hover {
   background-color: #f8d31d;
 }
+
+.helper-text {
+  max-width: 100%;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  color: #ef4444;
+  margin-top: 0.25rem;
+}
+
+/* aside */
+.aside {
+  position: fixed; /* fixed */
+  bottom: 1rem; /* bottom-4 */
+  right: 1rem; /* end-4 */
+  z-index: 50; /* z-50 */
+  display: flex; /* flex */
+  align-items: center; /* items-center */
+  justify-content: center; /* justify-center */
+  gap: 1rem; /* gap-4 */
+  border-radius: 0.625rem; /* rounded-lg */
+  background-color: #fef2f2; /* bg-black */
+  padding-left: 1.25rem; /* px-5 */
+  padding-right: 1.25rem; /* px-5 */
+  padding-top: 0.75rem; /* py-3 */
+  padding-bottom: 0.75rem; /* py-3 */
+  color: #991b1b; /* text-white */
+}
+
+/* aside-p */
+.aside-p {
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500; /* font-medium */
+  transition: opacity 0.15s ease-in-out; /* hover:opacity-75 */
+}
+
+/* aside-button */
+.aside-button {
+  color: #e5e7eb;
+  border-radius: 0.375rem; /* rounded */
+  background-color: #991b1b; /* bg-white/20 */
+  padding-top: 0.25rem; /* p-1 */
+  padding-right: 0.25rem; /* p-1 */
+  padding-bottom: 0.25rem; /* p-1 */
+  padding-left: 0.25rem; /* p-1 */
+  transition: background-color 0.15s ease-in-out; /* hover:bg-white/10 */
+}
+
+.aside-button:hover {
+  background-color: #ef4444; /* hover:bg-white/10 */
+}
+
+/* aside-button-svg */
+.aside-button-svg {
+  height: 1rem; /* h-4 */
+  width: 1rem; /* w-4 */
+}
+
+
