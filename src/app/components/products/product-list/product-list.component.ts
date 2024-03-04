@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../../models/product.model';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgxSkeletonLoaderModule],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css',
 })
@@ -20,6 +21,7 @@ export class ProductListComponent implements OnInit {
   rowsPerPage: number = 5;
   currentPage: number = 1;
   totalPages: number = Math.ceil(this.listProducts.length / this.rowsPerPage);
+  isLoading: boolean = true;
 
   ngOnInit(): void {
     this.loadData();
@@ -34,8 +36,10 @@ export class ProductListComponent implements OnInit {
           this.listProducts.length / this.rowsPerPage
         );
         this.updatePagination();
+        this.isLoading = false;
       },
       error: () => {
+        this.isLoading = false;
         console.log('error');
       },
     });

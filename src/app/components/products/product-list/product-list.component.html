@@ -16,44 +16,51 @@
 <section>
   <div class="card">
     <div class="overflow">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Logo</th>
-            <th>Nombre del Producto</th>
-            <th>Descripción</th>
-            <th>Fecha de Liberación</th>
-            <th>Fecha de Restructuracón</th>
-          </tr>
-        </thead>
+      <section *ngIf="isLoading; else productList">
+        <ngx-skeleton-loader count="5"></ngx-skeleton-loader>
+      </section>
 
-        <tbody *ngIf="filteredProducts && filterProducts.length > 0; else noProducts">
-          <tr *ngFor="let product of filteredProducts">
-            <td>
-              <div class="avatar" *ngIf="isValidUrl(product.logo); else AvatarText">
-                <img [src]="product.logo" alt="Logo {{product.name}}">
-              </div>
-
-              <ng-template #AvatarText>
-                <div class="avatar avatar-color">
-                  <span class="avatar-text">{{ product.name.slice(0, 2) }}</span>
-                </div>
-              </ng-template>
-            </td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.description }}</td>
-            <td>{{ product.date_release | date : "dd/MM/yyyy" }}</td>
-            <td>{{ product.date_revision | date : "dd/MM/yyyy" }}</td>
-          </tr>
-        </tbody>
-        <ng-template #noProducts>
-          <tbody>
+      <ng-template #productList>
+        <table class="table">
+          <thead>
             <tr>
-              <td colspan="5" class="no-results">No hay productos</td>
+              <th>Logo</th>
+              <th>Nombre del Producto</th>
+              <th>Descripción</th>
+              <th>Fecha de Liberación</th>
+              <th>Fecha de Restructuracón</th>
+            </tr>
+          </thead>
+
+          <tbody *ngIf="filteredProducts && filterProducts.length > 0; else noProducts">
+            <tr *ngFor="let product of filteredProducts">
+              <td>
+                <div class="avatar" *ngIf="isValidUrl(product.logo); else AvatarText">
+                  <img [src]="product.logo" alt="Logo {{product.name}}">
+                </div>
+
+                <ng-template #AvatarText>
+                  <div class="avatar avatar-color">
+                    <span class="avatar-text">{{ product.name.slice(0, 2) }}</span>
+                  </div>
+                </ng-template>
+              </td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.description }}</td>
+              <td>{{ product.date_release | date : "dd/MM/yyyy" }}</td>
+              <td>{{ product.date_revision | date : "dd/MM/yyyy" }}</td>
             </tr>
           </tbody>
-        </ng-template>
-      </table>
+          <ng-template #noProducts>
+            <tbody>
+              <tr>
+                <td colspan="5" class="no-results">No hay productos</td>
+              </tr>
+            </tbody>
+          </ng-template>
+        </table>
+      </ng-template>
+
       <footer class="footer">
         <div>
           <p class="footer-text">
