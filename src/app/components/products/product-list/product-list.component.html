@@ -1,6 +1,6 @@
 <section class="content-list">
   <div class="nav-search">
-    <input type="search" class="input" placeholder="Search..." />
+    <input type="search" class="input" placeholder="Search..." (input)="filterProducts($event)" />
     <svg class="svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path
         stroke-linecap="round"
@@ -27,29 +27,23 @@
           </tr>
         </thead>
 
-        <tbody *ngIf="listProducts && listProducts.length > 0; else noProducts">
-          <tr>
-            <td>John Doe</td>
-            <td>24/05/1995</td>
-            <td>Web Developer</td>
-            <td>$120,000</td>
-            <td>$120,000</td>
-          </tr>
+        <tbody *ngIf="filteredProducts && filterProducts.length > 0; else noProducts">
+          <tr *ngFor="let product of filteredProducts">
+            <td>
+              <div class="avatar" *ngIf="isValidUrl(product.logo); else AvatarText">
+                <img [src]="product.logo" alt="Logo {{product.name}}">
+              </div>
 
-          <tr>
-            <td>Jane Doe</td>
-            <td>04/11/1980</td>
-            <td>Web Designer</td>
-            <td>$100,000</td>
-            <td>$120,000</td>
-          </tr>
-
-          <tr>
-            <td>Gary Barlow</td>
-            <td>24/05/1995</td>
-            <td>Singer</td>
-            <td>$20,000</td>
-            <td>$120,000</td>
+              <ng-template #AvatarText>
+                <div class="avatar avatar-color">
+                  <span class="avatar-text">{{ product.name.slice(0, 2) }}</span>
+                </div>
+              </ng-template>
+            </td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.date_release | date : "dd/MM/yyyy" }}</td>
+            <td>{{ product.date_revision | date : "dd/MM/yyyy" }}</td>
           </tr>
         </tbody>
         <ng-template #noProducts>
@@ -64,14 +58,12 @@
         <div>
           <p class="footer-text">
             Resultados:
-            <span class="footer-count">{{
-              listProducts && listProducts.length
-            }}</span>
+            <span class="footer-count">{{ filteredProducts.length }}</span>
           </p>
         </div>
         <div class="footer-pagination">
           <label for="rows" class="footer-label">Mostrar:</label>
-          <select id="rows" class="footer-select form-select">
+          <select id="rows" class="footer-select form-select" (change)="updateRows($event)">
             <option>5</option>
             <option>10</option>
             <option>20</option>

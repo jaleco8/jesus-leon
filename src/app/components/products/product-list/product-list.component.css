@@ -256,3 +256,37 @@ tbody td {
   align-items: center;
   display: flex;
 }
+
+.avatar {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: white;
+}
+
+.avatar-color {
+  background-color: #f5c518;
+  color: #1d4ed8;
+}
+
+.avatar img {
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  display: block;
+  vertical-align: middle;
+}
+
+.avatar-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+}

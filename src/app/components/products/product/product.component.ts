@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ProductService } from '../../../services/product.service';
+import { Product } from '../../../models/product.model';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-product',
@@ -13,16 +16,18 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductComponent {
   productForm: FormGroup;
-  messageAlert: string = '';
+  messageAlert: string = 'Sin mensaje';
   showAlert: boolean = false;
+  colorAlert: string = 'danger';
 
-  constructor() {
+  constructor(private productService: ProductService, private router: Router) {
     this.productForm = new FormGroup({
-      id: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(10),
-      ]),
+      id: new FormControl('', {
+        validators: [Validators.required],
+        asyncValidators: [this.onVerificationId()],
+        updateOn: 'blur',
+      }),
+
       name: new FormControl('', [
         Validators.required,
         Validators.minLength(5),
@@ -39,15 +44,45 @@ export class ProductComponent {
     });
   }
 
+  onVerificationId() {
+    return (ctrl: AbstractControl) => {
+      return this.productService
+        .getProductById(ctrl.value)
+        .pipe(map((isTaken) => (isTaken ? { idExists: true } : null)));
+    };
+  }
+
   agregarProducto() {
-    // Validar que el formulario sea válido
     if (this.validForm()) {
-      // Enviar el formulario
-      console.log(this.productForm.value);
-    } else {
-      // Mostrar mensaje de error
-      console.log('Formulario inválido');
+      let product = this.getProductFrom();
+      this.productService.createProduct(product).subscribe({
+        next: (data: any) => {
+          if (data) {
+            this.showMsjAlert('Producto creado con éxito 👍', 'success');
+            this.productForm.reset();
+            setTimeout(() => {
+              this.router.navigate(['/']);
+            }, 2500);
+          } else {
+            this.showMsjAlert('Disculpe, hubo un error inesperado 👋');
+          }
+        },
+        error: () => {
+          this.showMsjAlert('Disculpe, hubo un error inesperado 👋');
+        },
+      });
     }
+  }
+
+  getProductFrom(): Product {
+    return {
+      id: this.productForm.get('id')?.value,
+      name: this.productForm.get('name')?.value,
+      description: this.productForm.get('description')?.value,
+      logo: this.productForm.get('logo')?.value,
+      date_release: this.productForm.get('date_release')?.value,
+      date_revision: this.productForm.get('date_revision')?.value,
+    } as Product;
   }
 
   validForm() {
@@ -60,12 +95,9 @@ export class ProductComponent {
       dateReleaseControl &&
       !this.dateReleaseValidator(dateReleaseControl as FormControl)
     ) {
-      this.showAlert = true;
-      this.messageAlert =
-        'Disculpe, la Fecha de liberación debe ser igual o mayor a la fecha actual 👋';
-      setTimeout(() => {
-        this.showAlert = false;
-      }, 5000);
+      this.showMsjAlert(
+        'Disculpe, la Fecha de liberación debe ser igual o mayor a la fecha actual 👋'
+      );
       return false;
     }
 
@@ -127,5 +159,14 @@ export class ProductComponent {
     let fechaFormateada = ano + '-' + mes + '-' + dia;
 
     return fechaFormateada;
+  }
+
+  showMsjAlert(message: string, color: string = 'danger', duration: number = 5000) {
+    this.showAlert = true;
+    this.messageAlert = message;
+    this.colorAlert = color;
+    setTimeout(() => {
+      this.showAlert = false;
+    }, duration);
   }
 }
