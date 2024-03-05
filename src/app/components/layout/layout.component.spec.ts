@@ -11,13 +11,13 @@ describe('LayoutComponent', () => {
       imports: [LayoutComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(LayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('debería crearse', () => {
     expect(component).toBeTruthy();
   });
 });

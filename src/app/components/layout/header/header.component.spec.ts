@@ -11,13 +11,13 @@ describe('HeaderComponent', () => {
       imports: [HeaderComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('debería crearse', () => {
     expect(component).toBeTruthy();
   });
 });
